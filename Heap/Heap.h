@@ -9,7 +9,7 @@ namespace dbms
 	std::wstring ToString(const Heap& heap);
 
 	/**
-	* @brief  ласс куча.
+	* @brief  Класс куча.
 	*/
 	class Heap final
 	{

@@ -26,7 +26,7 @@ dbms::Heap::Heap(const int capacity)
 {
 	if (capacity <= 0)
 	{
-		throw std::out_of_range("≈мкость кучи должна быть больше нул¤!");
+		throw std::out_of_range("Ёмкость кучи должна быть больше нуля!");
 	}
 
 	this->size = 0;
