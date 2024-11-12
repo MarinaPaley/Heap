@@ -1,4 +1,4 @@
-
+#include <sstream>
 #include "Heap.h"
 
 void dbms::Heap::Expand()
@@ -74,4 +74,34 @@ dbms::Heap& dbms::Heap::operator=(Heap&& other) noexcept
 
 	this->Swap(other);
 	return *this;
+}
+
+std::string dbms::Heap::ToString() const
+{
+	std::stringstream buffer{};
+	buffer << "{ ";
+	size_t i = 0;
+	for ( ;i < this->size - 1; ++i)
+	{
+		buffer << this->heap[i] << ", ";
+	}
+	buffer << this->heap[i] << " }";
+
+	return buffer.str();
+}
+
+std::ostream& dbms::operator<<(std::ostream& out, const Heap& heap)
+{
+	return out << heap.ToString();
+}
+
+bool dbms::operator==(const Heap& lha, const Heap& rha)
+{
+	return lha.ToString() == rha.ToString();
+}
+
+std::wstring dbms::ToString(const Heap& heap)
+{
+	const auto temp = heap.ToString();
+	return std::wstring{ temp.cbegin(), temp.cend() };
 }

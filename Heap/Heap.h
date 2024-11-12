@@ -5,6 +5,7 @@ namespace dbms
 {
 	class Heap;
 	std::ostream& operator<<(std::ostream& out, const Heap& heap);
+	bool operator==(const Heap& lha, const Heap& rha);
 	std::wstring ToString(const Heap& heap);
 
 	/**
