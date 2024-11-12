@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include <string>
 #include <ostream>
 namespace dbms 
@@ -9,7 +9,7 @@ namespace dbms
 	std::wstring ToString(const Heap& heap);
 
 	/**
-	* @brief Класс куча.
+	* @brief В Р»Р°СЃСЃ РєСѓС‡Р°.
 	*/
 	class Heap final
 	{

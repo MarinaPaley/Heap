@@ -1,4 +1,4 @@
-#include <sstream>
+ï»¿#include <sstream>
 #include "Heap.h"
 
 void dbms::Heap::Expand()
@@ -26,7 +26,7 @@ dbms::Heap::Heap(const int capacity)
 {
 	if (capacity <= 0)
 	{
-		throw std::out_of_range("Åìêîñòü êó÷è äîëæíà áûòü áîëüøå íóëÿ!");
+		throw std::out_of_range("â‰ˆÐ¼ÐºÐ¾ÑÑ‚ÑŒ ÐºÑƒÑ‡Ð¸ Ð´Ð¾Ð»Ð¶Ð½Ð° Ð±Ñ‹Ñ‚ÑŒ Ð±Ð¾Ð»ÑŒÑˆÐµ Ð½ÑƒÐ»Â¤!");
 	}
 
 	this->size = 0;
