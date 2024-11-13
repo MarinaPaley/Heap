@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include <string>
 #include <ostream>
-namespace dbms 
+namespace dbms
 {
 	class Heap;
 	std::ostream& operator<<(std::ostream& out, const Heap& heap);
@@ -21,6 +21,13 @@ namespace dbms
 		int* heap;
 		void Expand();
 		void Swap(Heap& other);
+		void MinHeapify(size_t i);
+		void DecreaseKey(size_t i, int value);
+		void Validate(size_t i);
+		void CheckIndex(size_t i) const;
+		size_t Parent(size_t i) const;
+		size_t Left(size_t i) const;
+		size_t Right(size_t i) const;
 	public:
 		Heap();
 		Heap(const int capacity);
@@ -31,9 +38,11 @@ namespace dbms
 		Heap& operator=(Heap&& other) noexcept;
 
 		void Insert(const int key);
-		void Delete(const int key);
+		void Delete(const size_t i);
 		int GetMin() const;
 		void ExtractMin();
+		bool IsEmpty() const;
 		std::string ToString() const;
-	}
+		size_t GetSize() const;
+	};
 }
