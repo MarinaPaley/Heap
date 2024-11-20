@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include <string>
 #include <ostream>
+#include <initializer_list>
+
 namespace dbms
 {
 	class Heap;
@@ -31,6 +33,7 @@ namespace dbms
 	public:
 		Heap();
 		Heap(const int capacity);
+		Heap(std::initializer_list<int> list);
 		~Heap();
 		Heap(const Heap& other);
 		Heap(Heap&& other) noexcept;

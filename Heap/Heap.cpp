@@ -35,8 +35,6 @@ void dbms::Heap::MinHeapify(size_t i)
 
 void dbms::Heap::DecreaseKey(size_t i, int value)
 {
-	this->CheckIndex(i);
-
 	this->heap[i] = value;
 
 	this->Validate(i);
@@ -66,12 +64,12 @@ size_t dbms::Heap::Parent(size_t i) const
 
 size_t dbms::Heap::Left(size_t i) const
 {
-	return (2 * i + 1);;
+	return (2 * i + 1);
 }
 
 size_t dbms::Heap::Right(size_t i) const
 {
-	return (2 * i + 2);;
+	return (2 * i + 2);
 }
 
 dbms::Heap::Heap()
@@ -91,6 +89,14 @@ dbms::Heap::Heap(const int capacity)
 	this->size = 0;
 	this->capacity = static_cast<size_t>(capacity);
 	this->heap = new int[this->capacity];
+}
+
+dbms::Heap::Heap(std::initializer_list<int> list) : Heap()
+{
+	for (auto item : list)
+	{
+		this->Insert(item);
+	}
 }
 
 dbms::Heap::~Heap()
@@ -150,9 +156,12 @@ void dbms::Heap::Delete(const size_t i)
 {
 	this->CheckIndex(i);
 
-	auto value = this->heap[0] - 1;
-	this->DecreaseKey(i, value);
-	this->ExtractMin();
+	//auto value = this->heap[0] - 1;
+	//this->DecreaseKey(i, value);
+	//this->ExtractMin();
+	std::swap(this->heap[i], this->heap[--this->size]);
+	this->MinHeapify(0);
+	//https://www.procoding.org/min-heap#min-heap-implementation-recursive
 }
 
 int dbms::Heap::GetMin() const

@@ -42,9 +42,7 @@ namespace Tests
 		TEST_METHOD(Insert_Heap_Size3)
 		{
 			// arrange
-			Heap heap{};
-			heap.Insert(1);
-			heap.Insert(2);
+			Heap heap{1, 2};
 			const size_t expected = 3;
 
 			// act
@@ -54,13 +52,11 @@ namespace Tests
 			// assert
 			Assert::AreEqual(expected, actual);
 		}
+
 		TEST_METHOD(ToString_Heap_Success)
 		{
 			// arrange
-			Heap heap{};
-			heap.Insert(1);
-			heap.Insert(3);
-			heap.Insert(6);
+			Heap heap{1, 3, 6};
 			const std::string expected{"{ 1, 3, 6 }"};
 
 			// act
@@ -73,21 +69,54 @@ namespace Tests
 		TEST_METHOD(RandomInsert_Heap_Success)
 		{
 			// arrange
-			Heap heap{};
-			heap.Insert(8);
-			heap.Insert(1);
-			heap.Insert(6);
-			heap.Insert(5);
-			heap.Insert(3);
-			heap.Insert(9);
+			Heap heap{ 8, 9, 5, 6, 3, 1 };
 			
-			const std::string expected{ "{ 1, 3, 6, 5, 9, 8 }" };
+			const std::string expected{ "{ 1, 5, 3, 9, 6, 8 }" };
 
 			// act
 			const auto actual = heap.ToString();
 
 			// assert
 			Assert::AreEqual(expected, actual);
+		}
+
+		TEST_METHOD(GetMin_ValidHeap_Success)
+		{
+			// arrange
+			Heap heap{ 8, 9, 6, 5, 3, 1 };
+			auto expected = 1;
+
+			// act
+			auto actual = heap.GetMin();
+
+			//
+			Assert::AreEqual(expected, actual);
+		}
+
+		TEST_METHOD(DeleteParent_ValidIndex_Success)
+		{
+			// arrange
+			Heap heap{ 8, 9, 5, 6, 3, 1 };
+			const std::string expected{ "{ 1, 6, 3, 9, 8 }" };
+
+			// act
+			heap.Delete(1);
+
+			// assert
+			Assert::AreEqual(expected, heap.ToString());
+		}
+
+		TEST_METHOD(DeleteRoot_ValidIndex_Success)
+		{
+			// arrange
+			Heap heap{ 8, 9, 5, 6, 3, 1 };
+			const std::string expected{ "{ 3, 5, 6, 9, 8 }" };
+
+			// act
+			heap.Delete(0);
+
+			// assert
+			Assert::AreEqual(expected, heap.ToString());
 		}
 	};
 }
