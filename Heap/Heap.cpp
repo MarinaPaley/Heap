@@ -21,10 +21,8 @@ void dbms::Heap::MinHeapify(size_t i)
 	auto left = this->Left(i);
 	auto right = this->Right(i);
 	auto smallest = i;
-	if (left < this->size && this->heap[left] < this->heap[i])
-		smallest = left;
-	if (right < this->size && this->heap[right] < this->heap[smallest])
-		smallest = right;
+	smallest = left < this->size && this->heap[left] < this->heap[i] ? left : smallest;
+	smallest = right < this->size && this->heap[right] < this->heap[i] ? right : smallest;
 
 	if (smallest != i)
 	{
@@ -156,12 +154,8 @@ void dbms::Heap::Delete(const size_t i)
 {
 	this->CheckIndex(i);
 
-	//auto value = this->heap[0] - 1;
-	//this->DecreaseKey(i, value);
-	//this->ExtractMin();
 	std::swap(this->heap[i], this->heap[--this->size]);
 	this->MinHeapify(0);
-	//https://www.procoding.org/min-heap#min-heap-implementation-recursive
 }
 
 int dbms::Heap::GetMin() const

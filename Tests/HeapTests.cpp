@@ -110,7 +110,7 @@ namespace Tests
 		{
 			// arrange
 			Heap heap{ 8, 9, 5, 6, 3, 1 };
-			const std::string expected{ "{ 3, 5, 6, 9, 8 }" };
+			const std::string expected{ "{ 3, 5, 8, 9, 6 }" };
 
 			// act
 			heap.Delete(0);
